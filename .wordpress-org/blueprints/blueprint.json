@@ -1,0 +1,42 @@
+{
+	"landingPage": "/?page_id=2&fl_builder",
+	"phpExtensionBundles": [
+		"kitchen-sink"
+	],
+	"steps": [{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		},
+		{
+			"step": "installTheme",
+			"themeZipFile": {
+				"resource": "wordpress.org/themes",
+				"slug": "blocksy"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginZipFile": {
+				"resource": "wordpress.org/plugins",
+				"slug": "beaver-builder-lite-version"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require_once 'wordpress/wp-load.php'; FLBuilderModel::save_global_settings( [ 'default_heading_selector' => '.hero-section' ] ); FLBuilderModel::set_post_id( 2 ); FLBuilderModel::apply_template( 2 ); ?>"
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"_fl_builder_inline_enabled": "1"
+			}
+		}
+	]
+}
